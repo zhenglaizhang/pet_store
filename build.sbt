@@ -6,6 +6,8 @@ lazy val root = (project in file(".")).enablePlugins(PlayScala)
 
 scalaVersion := "2.11.8"
 
+scalacOptions ++= Seq("-feature", "-language:reflectiveCalls")
+
 libraryDependencies ++= Seq(
   jdbc,
   cache,

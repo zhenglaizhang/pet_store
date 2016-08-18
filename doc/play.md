@@ -2,6 +2,7 @@
 
 ```bash
 activator new hello-play
+activator new hello-play2 play-scala
 
 activator run
 
