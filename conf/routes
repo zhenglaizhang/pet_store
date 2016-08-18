@@ -2,15 +2,27 @@
 # This file defines all application routes (Higher priority routes first)
 # ~~~~
 
+
+# The order of preference to a route is defined by its position in the routes file. The router returns the first matching route for a given path.
+
 # An example controller showing a sample home page
 GET           /                            controllers.HomeController.index
+
+
+# Static request paths are fixed and constant. They cannot support arguments in the request path. All the data required for such requests should be sent through request parameters or request bodies
+
+
 GET           /home2                       controllers.HomeController.index2
+GET           /login                       controllers.HomeController.index
+POST          /login                       controllers.HomeController.login
 
 
 # Tasks
 GET           /tasks/index                 controllers.TaskController.index
 GET           /tasks                       controllers.TaskController.tasks
 POST          /tasks                       controllers.TaskController.newTask
+
+# By default, all the variables that occur in a path are of the String type. If a conversion is required, the type should be mentioned explicitly.
 DELETE        /tasks/:id                   controllers.TaskController.deleteTask(id: Int)
 
 
@@ -20,6 +32,15 @@ GET           /artists                     controllers.ArtistController.listArti
 # if type not specified, by default that's String
 GET           /artists/:name               controllers.ArtistController.fetchArtistByName(name)
 
+
+# Use regex
+# GET /api/region/$regionId<[a-zA-Z]{2}>/user
+# /api/region/IN/user is a valid path
+# /api/region/CABT/user and /api/region/99/user are invalid
+
+# Multiple variables can also be used in the same path.
+# /api/user/:userId/album/:albumId.
+
 # http://localhost:9000/search/artists?name=F&country=Austria
 # make name and country optional, we made the country parameter optional by setting a default value for it in the route definition
 # http://localhost:9000/search/artists?name=F
@@ -27,7 +48,8 @@ GET           /artists/:name               controllers.ArtistController.fetchArt
 GET           /search/artists              controllers.ArtistController.search(name: String?="", country: String?="")
 
 # Another way to implement option parameter
-GET           /search2/artists             controllers.ArtistController.search2(name: Option[String], country: String)
+# let Play handle acquiring the parameters from the request and passing them to the action
+GET           /search2/artists             controllers.ArtistController.search2(name: Option[String], country: String, limit: Int?= 10)
 
 
 
@@ -47,9 +69,16 @@ GET           /message                     controllers.AsyncController.message
 
 GET           /test/plain                  controllers.TestController.plainResult
 GET           /test/todo                   controllers.TestController.todo
+GET           /test/getc                   controllers.TestController.getConfig
 GET           /test/userimg/:id            controllers.TestController.getUserImage(id: Long)
 POST          /test/echo                   controllers.TestController.echo
 
 
+GET           /test/async1                 controllers.AsyncController.getReport(fileName)
+GET           /test/async2                 controllers.AsyncController.getReport2(fileName)
+
+
 # Map static resources from the /public folder to the /assets URL path
+# Dynamic paths
+# The * symbol indicates that anything following /assets/ until a space is found is the value of the file variable
 GET           /assets/*file                controllers.Assets.versioned(path="/public", file: Asset)

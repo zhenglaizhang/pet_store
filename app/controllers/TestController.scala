@@ -4,7 +4,10 @@ import java.io.File
 
 import akka.util.ByteString
 import play.api.http.HttpEntity
+import play.api.libs.json.Json
 import play.api.mvc.{Action, Controller, ResponseHeader, Result}
+
+import scala.xml.Node
 
 class TestController extends Controller {
 
@@ -46,5 +49,30 @@ With attachment, it will immediately go to the user, and not try to load it in t
   def echo = Action(parse.text) {
     request =>
       Status(200)("Got: " + request.body)
+  }
+
+  def getConfig = Action {
+    implicit request =>
+      val xmlResponse: Node = <metadata>
+        <company>TinySensors</company>
+        <batch>md2907</batch>
+      </metadata>
+      val jsonResponse = Json.obj("metadata" -> Json.arr(
+                                                          Json.obj("company" -> "TinySensors"),
+                                                          Json.obj("batch" -> "md2907"))
+                                 )
+      render {
+        /*
+        Play's helper methods that check to see if the request accepts the response of the application/xml and application/json types, respectively
+         */
+        case Accepts.Xml() => Ok(xmlResponse)
+          /*
+          if the same response response is sent for application/json and text/javascript
+           */
+          // | => & ? TODO bug fix
+        case Accepts.Json() | Accepts.JavaScript() => Ok(jsonResponse)
+        //        case Accepts.Html() => _
+        //        case Accepts.JavaScript() =>
+      }
   }
 }

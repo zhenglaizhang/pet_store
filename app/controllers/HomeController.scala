@@ -24,6 +24,10 @@ class HomeController @Inject() extends Controller {
     Ok(views.html.index("Your new application is ready."))
   }
 
+  def login(name: String, password: String) = Action {
+    ???
+  }
+
   def index2 = Action {
     val content = Html("<div>This is the content for the sample app</div>")
     Ok(views.html.main("Home")(content))
