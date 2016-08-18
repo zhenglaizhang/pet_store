@@ -33,6 +33,7 @@ GET           /search2/artists        controllers.ArtistController.search2(name:
 
 POST          /subscribe/text          controllers.SubscribeController.subscribeText
 POST          /subscribe/json          controllers.SubscribeController.subscribeJson
+POST          /subscribe/jsonparser          controllers.SubscribeController.getSubByParser
 
 # http://localhost:9000/hello?name=Play!
 # URL’s query string parameter
