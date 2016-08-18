@@ -1,0 +1,22 @@
+@(artists: Seq[Artist])
+
+@main("Artist List") {
+    <div class="container">
+        <table>
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Country</th>
+                </tr>
+            </thead>
+            <tbody>
+            @artists.map { artist =>
+                <tr>
+                    <td>@artist.name</td>
+                    <td>@artist.country</td>
+                </tr>
+            }
+            </tbody>
+        </table>
+    </div>
+}
