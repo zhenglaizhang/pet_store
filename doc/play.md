@@ -19,3 +19,11 @@ A **Play application** is a directory on the filesystem that contains a certain 
 * project—Project build scripts
 * public—Publicly accessible static files
 * test—Automated tests
+
+
+
+There is a major implications for being able to test your web application without running a server.
+```bash
+scala> views.html.hello.render("Play!")
+
+```
