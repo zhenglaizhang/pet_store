@@ -1,6 +1,5 @@
 @(title: String)(tasks: List[Task])
 
-<h2>@title</h2>
 
 @main(title) {
     @*Ideally, we shouldn't be defining JavaScript methods in the window's global namespace.*@
@@ -16,18 +15,21 @@
            req.send();
        }
     </script>
-    <div>
+    <div class="header">
+        <h2>@title</h2>
+    </div>
+    <div class="container">
         <form action="@routes.TaskController.newTask()" method="post">
             <input type="text" name="taskName" placeholder="Add a new task" required>
-            <input type="submit" value="Add">
+            <input type="submit" class="btn-primary" value="Add">
         </form>
     </div>
     <br>
-    <div>
+    <div class="container">
         <ul>
         @tasks.map { task =>
             <li>
-                @task.name <button onclick="deleteTask(@task.id);">Remove</button>
+                @task.name <button onclick="deleteTask(@task.id);" class="btn-primary">Remove</button>
             </li>
         }
         </ul>
