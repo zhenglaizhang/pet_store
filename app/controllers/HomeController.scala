@@ -33,5 +33,4 @@ class HomeController @Inject() extends Controller {
     //    Ok(s"Hello $name")
     Ok(views.html.hello(name))
   }
-
 }

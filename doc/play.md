@@ -39,4 +39,6 @@ text/plain;charset=UTF-8' --data-binary 'userId@gmail.com'
 curl 'http://localhost:9000/subscribe/json' -H 'Content-Type: text/json' --data-binary '{"emailId": "userId@gmail.com", "interval": "month"}'
 
 curl 'http://localhost:9000/subscribe/jsonparser' -H 'Content-Type: text/json' --data-binary '{"emailId": "userId@gmail.com", "interval": "month"}'
+
+curl 'http://localhost:9000/test/echo' -H 'Content-Type: text/plain' --data-binary '{"emailId": "userId@gmail.com", "interval": "month"}'
 ```

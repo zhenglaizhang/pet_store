@@ -3,46 +3,53 @@
 # ~~~~
 
 # An example controller showing a sample home page
-GET           /                       controllers.HomeController.index
-GET           /home2                  controllers.HomeController.index2
+GET           /                            controllers.HomeController.index
+GET           /home2                       controllers.HomeController.index2
 
 
 # Tasks
-GET           /tasks/index            controllers.TaskController.index
-GET           /tasks                  controllers.TaskController.tasks
-POST          /tasks                  controllers.TaskController.newTask
-DELETE        /tasks/:id              controllers.TaskController.deleteTask(id: Int)
+GET           /tasks/index                 controllers.TaskController.index
+GET           /tasks                       controllers.TaskController.tasks
+POST          /tasks                       controllers.TaskController.newTask
+DELETE        /tasks/:id                   controllers.TaskController.deleteTask(id: Int)
 
 
 # Artist
-GET           /artists                controllers.ArtistController.listArtist
+GET           /artists                     controllers.ArtistController.listArtist
 
 # if type not specified, by default that's String
-GET           /artists/:name          controllers.ArtistController.fetchArtistByName(name)
+GET           /artists/:name               controllers.ArtistController.fetchArtistByName(name)
 
 # http://localhost:9000/search/artists?name=F&country=Austria
 # make name and country optional, we made the country parameter optional by setting a default value for it in the route definition
 # http://localhost:9000/search/artists?name=F
 
-GET           /search/artists         controllers.ArtistController.search(name: String?="", country: String?="")
+GET           /search/artists              controllers.ArtistController.search(name: String?="", country: String?="")
 
 # Another way to implement option parameter
-GET           /search2/artists        controllers.ArtistController.search2(name: Option[String], country: String)
+GET           /search2/artists             controllers.ArtistController.search2(name: Option[String], country: String)
 
 
 
-POST          /subscribe/text          controllers.SubscribeController.subscribeText
-POST          /subscribe/json          controllers.SubscribeController.subscribeJson
-POST          /subscribe/jsonparser          controllers.SubscribeController.getSubByParser
+POST          /subscribe/text              controllers.SubscribeController.subscribeText
+POST          /subscribe/json              controllers.SubscribeController.subscribeJson
+POST          /subscribe/jsonparser        controllers.SubscribeController.getSubByParser
 
 # http://localhost:9000/hello?name=Play!
 # URL’s query string parameter
 # the query string parameter name matches the parameter name declared in the routes file, not the hello action method parameter.
-GET           /hello                  controllers.HomeController.hello(name: String)
+GET           /hello                       controllers.HomeController.hello(name: String)
 # An example controller showing how to use dependency injection
-GET           /count                  controllers.CountController.count
+GET           /count                       controllers.CountController.count
 # An example controller showing how to write asynchronous code
-GET           /message                controllers.AsyncController.message
+GET           /message                     controllers.AsyncController.message
+
+
+GET           /test/plain                  controllers.TestController.plainResult
+GET           /test/todo                   controllers.TestController.todo
+GET           /test/userimg/:id            controllers.TestController.getUserImage(id: Long)
+POST          /test/echo                   controllers.TestController.echo
+
 
 # Map static resources from the /public folder to the /assets URL path
-GET           /assets/*file           controllers.Assets.versioned(path="/public", file: Asset)
+GET           /assets/*file                controllers.Assets.versioned(path="/public", file: Asset)
