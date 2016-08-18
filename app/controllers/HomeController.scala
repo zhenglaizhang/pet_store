@@ -3,6 +3,7 @@ package controllers
 import javax.inject._
 
 import play.api.mvc._
+import play.twirl.api.Html
 
 /**
   * This controller creates an `Action` to handle HTTP requests to the
@@ -23,6 +24,10 @@ class HomeController @Inject() extends Controller {
     Ok(views.html.index("Your new application is ready."))
   }
 
+  def index2 = Action {
+    val content = Html("<div>This is the content for the sample app</div>")
+    Ok(views.html.main("Home")(content))
+  }
 
   def hello(name: String) = Action {
     //    Ok(s"Hello $name")

@@ -4,10 +4,7 @@
 
 # An example controller showing a sample home page
 GET        /                    controllers.HomeController.index
-
-
-GET        /products            controllers.ProductsController.list
-
+GET        /home2               controllers.HomeController.index2
 
 # http://localhost:9000/hello?name=Play!
 # URL’s query string parameter
