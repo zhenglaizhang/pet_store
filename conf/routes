@@ -6,6 +6,9 @@
 GET        /                    controllers.HomeController.index
 GET        /home2               controllers.HomeController.index2
 
+
+GET        /task                controllers.TaskController.index
+
 # http://localhost:9000/hello?name=Play!
 # URL’s query string parameter
 # the query string parameter name matches the parameter name declared in the routes file, not the hello action method parameter.
