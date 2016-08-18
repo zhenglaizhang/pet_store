@@ -22,4 +22,17 @@ class ArtistController extends Controller {
       Ok(views.html.artist(result))
     }
   }
+
+  def search2(name: Option[String], country: String) = Action {
+    val result = name match {
+      case Some(n) => Artist.fetchByNameOrCountry(n, country)
+      case None => Artist.fetchByCountry(country)
+    }
+
+    if (result.isEmpty) {
+      NoContent
+    } else {
+      Ok(views.html.artist(result))
+    }
+  }
 }

@@ -28,3 +28,13 @@ There is a major implications for being able to test your web application withou
 scala> views.html.hello.render("Play!")
 
 ```
+
+Test post 
+
+```bash
+curl 'http://localhost:9000/subscribe/text' -H 'Content-Type:
+text/plain;charset=UTF-8' --data-binary 'userId@gmail.com'
+
+
+curl 'http://localhost:9000/subscribe/json' -H 'Content-Type: text/json' --data-binary '{"emailId": "userId@gmail.com", "interval": "month"}'
+```
